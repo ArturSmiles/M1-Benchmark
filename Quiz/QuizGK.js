@@ -53,10 +53,12 @@ function showResults(){
         alert("YOU WIN! \n"+ "Total Score of: " + numCorrect)
         document.getElementById("again").style.display = 'inline-block';
         submitButton.style.display = 'none';
+        previousButton.style.display = 'none'
     }else{
         alert("YOU LOSE \n" + "Total Score of: " + numCorrect)
         document.getElementById("again").style.display = 'inline-block';
         submitButton.style.display = 'none';
+        previousButton.style.display = 'none'
     }
 }
 function showSlide(n) {

@@ -3,33 +3,14 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Quiz</title>
-        <style>
-            .slide{
-                position: absolute;
-                left: 0px;
-                top: 0px;
-                width: 100%;
-                z-index: 1;
-                opacity: 0;
-                transition: opacity 0.5s;
-            }
-            .active-slide{
-                opacity: 1;
-                z-index: 2;
-            }
-            .quiz-container{
-                position: relative;
-                height: 200px;
-                margin-top: 40px;
-            }
-
-        </style>
+        <title>Quiz CS</title>
+        <link rel="stylesheet" href="QuizCSS.css">
     </head>
     <body>
         <h1>Q U I Z ! ! !</h1>
         <h2>Score</h2>
         <p>You will get 1 Point for each correct answer.At the end of the Quiz, your total score will be displayed. Maximum score is 10 points.</p>
+        <p>You have to get 6 out of 10 questions right or you lose</p>
         <div class="quiz-container">
             <div id="quiz"></div>
           </div>

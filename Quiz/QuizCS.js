@@ -1,5 +1,5 @@
 //Functions
-function buildQuiz(){
+function loadGame(){
     const output=[]
 
     myQuestions.forEach(
@@ -23,41 +23,42 @@ function buildQuiz(){
             )
         }
     )
-    quizContainer.innerHTML = output.join("")
+    quizC.innerHTML = output.join("")
 }
 function showResults(){
-    const answerContainers = quizContainer.querySelectorAll('.answers');
-    let numCorrect = 0;
+    const answerC = quizC.querySelectorAll('.answers');
+    let numRight = 0;
     myQuestions.forEach( (currentQuestion, questionNumber) => {
 
-      const answerContainer = answerContainers[questionNumber];
+      const answerContainer = answerC[questionNumber];
       const selector = `input[name=question${questionNumber}]:checked`;
       const userAnswer = (answerContainer.querySelector(selector) || {}).value;
 
       if(userAnswer === currentQuestion.correctAnswer){
         
-        numCorrect++;
+        numRight++;
   
         
-        answerContainers[questionNumber].style.color = 'lightgreen';
+        answerC[questionNumber].style.color = 'lightgreen';
       }
       
       else{
         
-        answerContainers[questionNumber].style.color = 'red';
+        answerC[questionNumber].style.color = 'red';
       }
     });
 
-    resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
-    if(numCorrect >= 6){
-        alert("YOU WIN! \n"+ "Total Score of: " + numCorrect)
-        document.getElementById("new").style.display = 'inline-block';
+    resultC.innerHTML = `${numRight} out of ${myQuestions.length}`;
+    if(numRight >= 6){
+        alert("YOU WIN! \n"+ "Total Score of: " + numRight)
         document.getElementById("again").style.display = 'inline-block';
-        submitButton.style.display = 'none';
+        submitBtn.style.display = 'none';
+        previousButton.style.display = 'none'
     }else{
-        alert("YOU LOSE \n" + "Total Score of: " + numCorrect)
+        alert("YOU LOSE \n" + "Total Score of: " + numRight)
         document.getElementById("again").style.display = 'inline-block';
-        submitButton.style.display = 'none';
+        submitBtn.style.display = 'none';
+        previousButton.style.display = 'none'
     }
 }
 function showSlide(n) {
@@ -72,11 +73,12 @@ function showSlide(n) {
     }
     if(currentSlide === slides.length-1){
       nextButton.style.display = 'none';
-      submitButton.style.display = 'inline-block';
+      submitBtn.style.display = 'inline-block';
+      document.getElementById("new").style.display = 'inline-block';
     }
     else{
       nextButton.style.display = 'inline-block';
-      submitButton.style.display = 'none';
+      submitBtn.style.display = 'none';
       document.getElementById("new").style.display = 'none';
       document.getElementById("again").style.display = 'none';
     }
@@ -89,9 +91,9 @@ function showPreviousSlide() {
 }
 
 //Variables
-const quizContainer = document.getElementById("quiz")
-const resultsContainer = document.getElementById('results');
-const submitButton = document.getElementById('submit');
+const quizC = document.getElementById("quiz")
+const resultC = document.getElementById('results');
+const submitBtn = document.getElementById('submit');
 const myQuestions = [
     {
       category: "Science: Computers",
@@ -226,7 +228,7 @@ const myQuestions = [
     }
   ];
 //Start
-buildQuiz()
+loadGame()
 
 //Pages
 const previousButton = document.getElementById("previous");
@@ -238,6 +240,6 @@ let currentSlide = 0;
 showSlide(currentSlide)
 
 //Event Listeners
-submitButton.addEventListener("click", showResults)
+submitBtn.addEventListener("click", showResults)
 previousButton.addEventListener("click", showPreviousSlide);
 nextButton.addEventListener("click", showNextSlide);
